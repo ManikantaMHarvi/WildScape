@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Nature's Wonders</title>
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #2c6e49;
+            --secondary: #4c956c;
+            --accent: #fefee3;
+            --light: #f8f9fa;
+            --dark: #212529;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Smooth Scroll Behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(44, 110, 73, 0.9);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            padding: 0.5rem 0;
+            background-color: rgba(44, 110, 73, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.8rem;
+            text-decoration: none;
+        }
+        
+        .logo-main {
+            font-family: 'Pacifico', cursive;
+            color: #fefee3;
+        }
+        
+        .logo-symbol {
+            font-size: 0.8em;
+            vertical-align: super;
+            color: #d8f3dc;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #d8f3dc;
+        }
+        
+        /* Hero Section with Parallax */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                        url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--primary);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .scroll-down {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 6rem 2rem;
+            position: relative;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            font-size: 2.5rem;
+        }
+        
+        /* About Section */
+        .about {
+            background-color: var(--light);
+        }
+        
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 3rem;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-text a {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 2px solid var(--secondary);
+            transition: all 0.3s ease;
+        }
+        
+        .about-text a:hover {
+            color: var(--secondary);
+            border-bottom-color: var(--primary);
+        }
+        
+        .important-links {
+            margin-top: 2rem;
+            background-color: rgba(76, 149, 108, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .important-links h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .important-links h3 i {
+            color: var(--secondary);
+        }
+        
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            list-style-type: none;
+        }
+        
+        .links-grid li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .links-grid a {
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            padding: 0.3rem 0;
+        }
+        
+        .links-grid a:hover {
+            color: var(--secondary);
+            transform: translateX(5px);
+        }
+        
+        .links-grid i {
+            color: var(--secondary);
+            width: 20px;
+            text-align: center;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            height: 400px;
+            background: url('https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.5s ease;
+        }
+        
+        .about-image:hover {
+            transform: rotate(-1deg) scale(1.02);
+        }
+        
+        /* Gallery Section with Parallax */
+        .gallery {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1426604966848-d7adac402bff?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: white;
+            text-align: center;
+        }
+        
+        .gallery h2 {
+            color: white;
+        }
+        
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        .image-card {
+            height: 250px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .image-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+        
+        .image-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .image-card:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* Nature Links Section */
+        .nature-links {
+            background-color: var(--light);
+        }
+        
+        .links-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        .nature-link {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .nature-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .nature-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .nature-link i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        /* Contact Section */
+        .contact {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .contact h2 {
+            color: white;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            background-color: #1e4d30;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-image {
+                width: 100%;
+            }
+            
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header id="header">
+        <nav>
+            <a href="#home" class="logo">
+                <span class="logo-main">WildScape</span>
+                <span class="logo-symbol">∞</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#explore">Explore</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Discover Nature's Majesty</h1>
+            <p>Explore the breathtaking beauty of our planet through stunning landscapes, diverse ecosystems, and awe-inspiring natural wonders.</p>
+            <a href="#explore" class="btn">Start Exploring</a>
+        </div>
+        <a href="#about" class="scroll-down"><i class="fas fa-chevron-down"></i></a>
+    </section>
+
+    <!-- About Section with Important Links -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">About Nature's Wonders</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Nature is the ultimate artist, creating masterpieces that span across continents and climates. From the towering peaks of majestic mountains to the serene depths of crystal-clear lakes, our planet offers endless beauty to <a href="#explore">explore</a> and protect.</p>
+                    
+                    <p>This project is dedicated to showcasing Earth's natural wonders, raising awareness about <a href="https://www.worldwildlife.org/" target="_blank">conservation efforts</a>, and inspiring people to connect with the environment around them.</p>
+                    
+                    <p>Through <a href="#gallery">photography</a>, education, and exploration, we aim to foster appreciation for the delicate balance of ecosystems that sustain life on our planet.</p>
+                    
+                    <div class="important-links">
+                        <h3><i class="fas fa-compass"></i> Quick Nature Resources</h3>
+                        <ul class="links-grid">
+                            <li><a href="https://www.nationalgeographic.com/" target="_blank"><i class="fas fa-globe"></i> National Geographic</a></li>
+                            <li><a href="https://www.nps.gov/index.htm" target="_blank"><i class="fas fa-tree"></i> National Parks Service</a></li>
+                            <li><a href="https://www.iucn.org/" target="_blank"><i class="fas fa-leaf"></i> IUCN Conservation</a></li>
+                            <li><a href="https://www.wwf.org.uk/" target="_blank"><i class="fas fa-paw"></i> WWF</a></li>
+                            <li><a href="https://earthobservatory.nasa.gov/" target="_blank"><i class="fas fa-satellite"></i> NASA Earth</a></li>
+                            <li><a href="https://www.alltrails.com/" target="_blank"><i class="fas fa-hiking"></i> AllTrails</a></li>
+                            <li><a href="https://www.nature.org/en-us/" target="_blank"><i class="fas fa-mountain"></i> Nature Conservancy</a></li>
+                            <li><a href="https://www.lonelyplanet.com/" target="_blank"><i class="fas fa-map-marked-alt"></i> Lonely Planet</a></li>
+                            <li><a href="https://www.britannica.com/science/nature" target="_blank"><i class="fas fa-book"></i> Nature Encyclopedia</a></li>
+                            <li><a href="https://www.weather.gov/" target="_blank"><i class="fas fa-cloud-sun"></i> Weather Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="about-image"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <h2 class="section-title">Nature's Gallery</h2>
+            <p>Witness the breathtaking diversity of landscapes from around the world.</p>
+            
+            <div class="image-grid">
+                <div class="image-card">
+                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Mountain Landscape">
+                </div>
+                <div class="image-card">
+                    <img src="https://images.unsplash.com/photo-1470114716159-e389f8712fda?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Forest">
+                </div>
+                <div class="image-card">
+                    <img src="https://images.unsplash.com/photo-1433086966358-54859d0ed716?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Waterfall">
+                </div>
+                <div class="image-card">
+                    <img src="https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Flowers">
+                </div>
+                <div class="image-card">
+                    <img src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Sunset">
+                </div>
+                <div class="image-card">
+                    <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Rock Formation">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nature Links Section -->
+    <section class="nature-links" id="explore">
+        <div class="container">
+            <h2 class="section-title">Explore Nature's Diversity</h2>
+            <p>Discover different aspects of nature through these curated categories:</p>
+            
+            <div class="links-container">
+                <div class="nature-link">
+                    <a href="#mountains">
+                        <i class="fas fa-mountain"></i>
+                        <span>Mountains</span>
+                    </a>
+                </div>
+                <div class="nature-link">
+                    <a href="#forests">
+                        <i class="fas fa-tree"></i>
+                        <span>Forests</span>
+                    </a>
+                </div>
+                <div class="nature-link">
+                    <a href="#oceans">
+                        <i class="fas fa-water"></i>
+                        <span>Oceans</span>
+                    </a>
+                </div>
+                <div class="nature-link">
+                    <a href="#deserts">
+                        <i class="fas fa-sun"></i>
+                        <span>Deserts</span>
+                    </a>
+                </div>
+                <div class="nature-link">
+                    <a href="#waterfalls">
+                        <i class="fas fa-waterfall"></i>
+                        <span>Waterfalls</span>
+                    </a>
+                </div>
+                <div class="nature-link">
+                    <a href="#caves">
+                        <i class="fas fa-mountain"></i>
+                        <span>Caves</span>
+                    </a>
+                </div>
+                <div class="nature-link">
+                    <a href="#wildlife">
+                        <i class="fas fa-paw"></i>
+                        <span>Wildlife</span>
+                    </a>
+                </div>
+                <div class="nature-link">
+                    <a href="#flowers">
+                        <i class="fas fa-spa"></i>
+                        <span>Flowers</span>
+                    </a>
+                </div>
+                <div class="nature-link">
+                    <a href="#volcanoes">
+                        <i class="fas fa-fire"></i>
+                        <span>Volcanoes</span>
+                    </a>
+                </div>
+                <div class="nature-link">
+                    <a href="#glaciers">
+                        <i class="fas fa-icicles"></i>
+                        <span>Glaciers</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <p>Have questions or want to share your nature experiences? Contact us!</p>
+            
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p><span class="logo-main">WildScape</span> <span class="logo-symbol">∞</span> &copy; 2023. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p>Made with <i class="fas fa-heart" style="color: #ff6b6b;"></i> for our planet</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Smooth Scrolling and Parallax Effects -->
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Simple parallax effect for elements
+        window.addEventListener('scroll', function() {
+            const scrollPosition = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.hero, .gallery');
+            
+            parallaxElements.forEach(element => {
+                if (element.classList.contains('hero')) {
+                    element.style.backgroundPositionY = scrollPosition * 0.5 + 'px';
+                } else if (element.classList.contains('gallery')) {
+                    element.style.backgroundPositionY = scrollPosition * 0.3 + 'px';
+                }
+            });
+        });
+        
+        // Form submission handling
+        const contactForm = document.querySelector('.contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your message! We will get back to you soon.');
+                this.reset();
+            });
+        }
+    </script>
+</body>
+</html>
